@@ -25,12 +25,7 @@ Template.main.helpers({
 Template.main.events({
 	"submit .new-todo": function (event) {
 		let text = event.target.text.value;
-		Todos.insert({
-			text: text,
-			createdAt: new Date(),
-			userId: Meteor.userId(),
-			username: Meteor.user().username,
-		})
+		Meteor.call('addTodo', text);
 		// clear input
 		event.target.text.value = "";
 
@@ -45,7 +40,7 @@ Template.main.events({
 		}
 
 		console.info("toggle-checked clicked!");
-		Todos.update(this._id, {$set: {checked: !this.checked}});
+		Meteor.call('setChecked', this._id, !this.checked);
 		return false;
 	},
 
@@ -56,7 +51,7 @@ Template.main.events({
 		}
 
 		if (confirm("Are you sure?")) {
-			Todos.remove(this._id);
+			Meteor.call('deleteTodo', this._id);
 		}
 	}
 });
