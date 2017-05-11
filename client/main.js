@@ -28,6 +28,8 @@ Template.main.events({
 		Todos.insert({
 			text: text,
 			createdAt: new Date(),
+			userId: Meteor.userId(),
+			username: Meteor.user().username,
 		})
 		// clear input
 		event.target.text.value = "";
@@ -37,14 +39,28 @@ Template.main.events({
 	},
 
 	"click .toggle-checked": function () {
+		// cancel click if not logged in
+		if (!Meteor.userId()) {
+			return false;
+		}
+
 		console.info("toggle-checked clicked!");
 		Todos.update(this._id, {$set: {checked: !this.checked}});
 		return false;
 	},
 
 	"click .delete-todo": function () {
+		// cancel click if not logged in
+		if (!Meteor.userId()) {
+			return false;
+		}
+
 		if (confirm("Are you sure?")) {
 			Todos.remove(this._id);
 		}
 	}
+});
+
+Accounts.ui.config({
+	passwordSignupFields: "USERNAME_ONLY"
 });
