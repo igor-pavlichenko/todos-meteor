@@ -5,6 +5,6 @@ Meteor.startup(() => {
 	// code to run on server at startup
 
 	Meteor.publish('todos', function () {
-		return Todos.find();
+		return Todos.find({userId: this.userId});
 	})
 });

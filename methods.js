@@ -24,6 +24,12 @@ Meteor.methods({
 			throw new Meteor.Error('not-authorized');
 		}
 
+		// check if current user owns that todo
+		let todo = Todos.findOne(id);
+		if(Meteor.userId() !== todo.userId) {
+			throw new Meteor.Error('not-authorized');
+		}
+
 		check(id, String);
 
 		Todos.remove(id);
@@ -32,6 +38,12 @@ Meteor.methods({
 	setChecked(id, checked) {
 		console.log('setChecked invoked!!!');
 		if(!Meteor.userId()) {
+			throw new Meteor.Error('not-authorized');
+		}
+
+		// check if current user owns that todo
+		let todo = Todos.findOne(id);
+		if(Meteor.userId() !== todo.userId) {
 			throw new Meteor.Error('not-authorized');
 		}
 
