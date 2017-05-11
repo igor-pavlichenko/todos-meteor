@@ -13,6 +13,8 @@ bootstrap = require('bootstrap');
 
 import './main.html';
 
+Meteor.subscribe('todos');
+
 Template.main.onCreated(function helloOnCreated() {
 });
 
