@@ -1,5 +1,6 @@
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
-
+//@import "./stylesheets/font-awesome.scss";
+//@import "../bower_components/font-awesome/scss/font-awesome.scss";
 
 /* Space out content a bit */
 
@@ -100,4 +101,29 @@ body {
     .jumbotron {
         border-bottom: 0;
     }
+}
+
+
+ul {
+	li {
+		&.checked {
+			>label {
+				color: #ccc;
+				text {
+					text-decoration: line-through;
+				}
+			}
+
+			.custom-control-indicator {
+				opacity: 0.6;
+			}
+
+			button {
+				opacity: 0.6;
+			}
+		}
+		>label {
+			flex-grow: 1;
+		}
+	}
 }

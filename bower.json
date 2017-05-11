@@ -1,0 +1,21 @@
+{
+  "name": "todos",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Igor Pavlichenko <igor.pavlichenko@comon.pt>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/igor-pavlichenko/todos-meteor",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "Font-Awesome#^4.7.0"
+  }
+}
